@@ -9,5 +9,6 @@ app.use(cors());
 app.use(express.json());
 
 // Uso de rutas
+app.use('/api/users', usersRoutes)
 
 app.listen(3000, () => console.log('Servidor en ejecución en el puerto 3000'));
