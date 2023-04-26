@@ -42,3 +42,43 @@ controller.createUser = (req, res) => {
         })
     })
 }
+
+controller.deleteUser = (req, res) => {
+    fs.readFile(usersFile, (err, data) => {
+        if (err) {
+            res.status(500).send('Error al leer el archivo')
+        }
+
+        const jsonData = JSON.parse(data)
+        const userDeleteIndex = jsonData.findIndex(user=>user.id === req.body.id)
+        
+        jsonData.splice(userDeleteIndex, 1)
+
+        fs.writeFile(usersFile, JSON.stringify(jsonData), err => {
+            if(err) {return res.status(500).send('Eror al guardar el arcihvo')}
+    
+            res.status(201).send('User borrado')
+        })
+    
+        res.send(jsonData)
+    })
+}
+
+controller.updateUser = (req, res) => {
+    fs.readFile(usersFile, (err, data) => {
+        if(err){
+            return res.status('Error al leer el archivo de usuarios')
+        }
+
+        const jsonData = JSON.parse(data)
+
+        const userIndex = jsonData.findIndex(user => user.id === req.body.userId)
+        
+        const newUser = {...jsonData[userIndex], ...req.body}
+       
+        jsonData[userIndex] = newUser;
+        res.send(jsonData)
+    })
+}
+
+module.exports = controller;
