@@ -10,6 +10,7 @@ const StyledHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 `
 
 const StyledInput = styled.input`
@@ -39,5 +40,27 @@ const StyledIcon = styled.img`
     right: 15px;
 `
 
+const StyledModal = styled.div`
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    left: 0;
 
-export {StyledHeader, StyledIcon, StyledInput, StyledNewUser}
+`
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    justify-content: start;
+    align-items: center;
+`
+const StyledIconCross = styled.img`
+    width: 50px;
+`
+
+
+export {StyledHeader, StyledIcon, StyledInput, StyledNewUser, StyledForm, StyledModal, StyledIconCross}
